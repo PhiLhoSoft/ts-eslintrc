@@ -78,7 +78,7 @@ module.exports =
 		// disallow unnecessary concatenation of literals or template literals
 		'no-useless-concat': 'error',
 		// disallow `void` operators
-		'no-void': [ 'error', { allowAsAStatement: true } ], // eslint-disable-line @typescript-eslint/naming-convention
+		'no-void': [ 'error', { allowAsStatement: true } ],
 		// disallow specified warning terms in comments
 		'no-warning-comments': 'warn',
 		// enforce the consistent use of the radix argument when using `parseInt()`

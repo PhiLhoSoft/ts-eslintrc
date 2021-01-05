@@ -14,5 +14,19 @@
 	},
 	"homepage": "https://PhiLhoSoft.github.io/",
 	"license": "MIT",
-	"private": false
+	"private": false,
+	"files": [
+		"/eslintrc.*",
+		"/.eslintrc.js",
+		"/tsconfig.json",
+		"/tsconfig.eslint.json"
+	],
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.11.1",
+		"@typescript-eslint/parser": "^4.11.1",
+		"eslint": "^7.15.0"
+	},
+	"scripts": {
+		"lint": "eslint ."
+	}
 }

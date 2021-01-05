@@ -4,6 +4,13 @@
 	"files":
 	[
 		".eslintrc.js",
+		/* To lint the configuration files themselves… */
+		"eslintrc.es.js",
+		"eslintrc.ts.js",
+		"eslintrc.semantics.es.js",
+		"eslintrc.semantics.ts.js",
+		"eslintrc.style.es.js",
+		"eslintrc.style.ts.js",
 	],
 	"include":
 	[

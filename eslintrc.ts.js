@@ -16,10 +16,10 @@ module.exports =
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
-		'./.eslintrc.semantics.es.js',
-		'./.eslintrc.style.es.js',
-		'./.eslintrc.semantics.ts.js',
-		'./.eslintrc.style.ts.js',
+		'./eslintrc.semantics.es.js',
+		'./eslintrc.style.es.js',
+		'./eslintrc.semantics.ts.js',
+		'./eslintrc.style.ts.js',
 	],
 	env:
 	{

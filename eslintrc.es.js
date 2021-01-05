@@ -9,8 +9,8 @@ module.exports =
 	extends:
 	[
 		'eslint:recommended',
-		'./.eslintrc.semantics.es.js',
-		'./.eslintrc.style.es.js',
+		'./eslintrc.semantics.es.js',
+		'./eslintrc.style.es.js',
 	],
 	env:
 	{
