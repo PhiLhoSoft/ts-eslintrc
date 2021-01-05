@@ -1,0 +1,27 @@
+{
+	/* Example of tsconfig.eslint.json, here only for ESLint+TS usage: it indicates which files to lint. */
+	"extends": "./tsconfig.json",
+	"files":
+	[
+		".eslintrc.js",
+	],
+	"include":
+	[
+		"**/*.ts",
+		"**/*.spec.ts",
+		"**/*.d.ts",
+	],
+	"exclude":
+	[
+		"node_modules",
+		"out",
+		"dist",
+	],
+	"compilerOptions":
+	{
+		"types":
+		[
+			"node",
+		],
+	},
+}

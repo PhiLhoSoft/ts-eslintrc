@@ -1,0 +1,38 @@
+{
+	/* Example of base tsconfig.json */
+	"compilerOptions":
+	{
+		"module": "ESNext",
+		"lib": [ "es2018" ],
+		"target": "ES6",
+		"outDir": "out",
+		"sourceMap": true,
+		"rootDir": "src",
+		"strict": true, /* enable all strict type-checking options */
+
+		"strictNullChecks": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"strictPropertyInitialization": false,
+		"strictFunctionTypes": false,
+		"types":
+		[
+			"node",
+		],
+	},
+	"include":
+	[
+		"**/*.ts",
+		"**/*.spec.ts",
+		"**/*.d.ts",
+	],
+	"exclude":
+	[
+		"node_modules",
+		"out",
+		"dist",
+	]
+}
