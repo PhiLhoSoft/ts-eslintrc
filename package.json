@@ -1,9 +1,9 @@
 {
-	"name": "ts-eslintrc",
+	"name": "@philhosoft/ts-eslintrc",
 	"displayName": "ts-eslintrc",
 	"version": "1.0.1",
 	"description": "Configuration files for ESLint, and optionally TypeScript / TSLint plugin",
-	"author": "PhiLho <PhiLho(a)GMX.net>",
+	"author": "PhiLho",
 	"publisher": "PhiLhoSoft",
 	"repository": {
 		"type": "git",
@@ -15,6 +15,9 @@
 	"homepage": "https://PhiLhoSoft.github.io/",
 	"license": "MIT",
 	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
 	"files": [
 		"/eslintrc.*",
 		"/.eslintrc.js",
