@@ -2,9 +2,12 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers -- They are needed for some rules. */
 
 // Style rules that can be applied by a formatter. TypeScript
-// Note: recommended rules are generally not there
 module.exports =
 {
+	extends:
+	[
+		'./eslintrc.style.es.js',
+	],
 	rules:
 	{
 		// Require a specific member delimiter style for interfaces and type literals
@@ -20,8 +23,11 @@ module.exports =
 					delimiter: 'semi',
 					requireLast: false,
 				},
+				multilineDetection: 'brackets',
 			},
 		],
+		// Standardize the way class declarations, class expressions, interfaces and type literals are structured and ordered
+		'@typescript-eslint/member-ordering': 'off',
 
 		// Override ESLint rules for TS
 

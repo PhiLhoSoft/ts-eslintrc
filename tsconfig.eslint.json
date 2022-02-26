@@ -1,33 +1,22 @@
+/*
+Example of tsconfig.eslint.json, here only for ESLint+TS usage.
+This file indicates which files to lint, from those given by ESLint.
+"files" and / or "include" are mandatory.
+"exclude" is not necessary, .eslintignore is prevalent.
+*/
 {
-	/* Example of tsconfig.eslint.json, here only for ESLint+TS usage: it indicates which files to lint. */
 	"extends": "./tsconfig.json",
-	"files":
-	[
-		".eslintrc.js",
+	"files": [
+		"./.eslintrc.js",
+	],
+	"include": [
 		/* To lint the configuration files themselves… */
-		"eslintrc.es.js",
-		"eslintrc.ts.js",
-		"eslintrc.semantics.es.js",
-		"eslintrc.semantics.ts.js",
-		"eslintrc.style.es.js",
-		"eslintrc.style.ts.js",
-	],
-	"include":
-	[
+		"**/*.js",
 		"**/*.ts",
-		"**/*.spec.ts",
-		"**/*.d.ts",
 	],
-	"exclude":
-	[
-		"node_modules",
-		"out",
-		"dist",
-	],
-	"compilerOptions":
-	{
-		"types":
-		[
+	"compilerOptions": {
+		"baseUrl": ".",
+		"types": [
 			"node",
 		],
 	},

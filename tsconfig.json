@@ -2,26 +2,39 @@
 	/* Example of base tsconfig.json */
 	"compilerOptions":
 	{
-		"module": "ESNext",
-		"lib": [ "es2018" ],
-		"target": "ES6",
-		"outDir": "out",
-		"sourceMap": true,
-		"rootDir": "src",
-		"strict": true, /* enable all strict type-checking options */
+		"target": "es2017",
+		"module": "es2020",
+		"lib":
+		[
+			"es2018",
+			"dom",
+		],
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
 
+		"rootDir": "src",
+		"outDir": "out",
+
+		"newLine": "LF",
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
 		"strictNullChecks": true,
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
-		"strictPropertyInitialization": false,
 		"strictFunctionTypes": false,
-		"types":
-		[
-			"node",
-		],
+		"strictPropertyInitialization": true,
+		// Speed up compilation if we don't use lot of external libraries.
+		"skipLibCheck": true,
+
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"allowSyntheticDefaultImports": true,
+		"importHelpers": true,
+		"noEmitHelpers": true,
+		"stripInternal": true,
+		"sourceMap": true,
 	},
 	"include":
 	[

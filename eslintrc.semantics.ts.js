@@ -1,11 +1,17 @@
 /* eslint-disable quote-props -- Because I prefer here consistency over pure rule. */
 /* eslint-disable @typescript-eslint/no-magic-numbers -- They are needed for some rules. */
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-call -- Consistent with exports. */
+
+const { allowedMagicNumbers, namingConventions, noUnusedVariables } = require('./eslint.settings');
 
 // Rules from possible errors, best practices, and so on. TypeScript
 // Some are stylistic (eg. naming conventions) but out of the scope of formatters.
-// Note: recommended rules are generally not there
 module.exports =
 {
+	extends:
+	[
+		'./eslintrc.semantics.es.js',
+	],
 	rules:
 	{
 		// Override recommended settings
@@ -22,13 +28,7 @@ module.exports =
 			},
 		],
 		// Disallow unused variables
-		'@typescript-eslint/no-unused-vars': [ 'warn',
-			{
-				varsIgnorePattern: '^_', // We can prefix a variable with _ to ignore it (probably temporarily)
-				args: 'none',
-				ignoreRestSiblings: true,
-			},
-		],
+		'@typescript-eslint/no-unused-vars': [ 'warn', noUnusedVariables ],
 
 		// Override defaults from preferred
 
@@ -42,18 +42,22 @@ module.exports =
 		'@typescript-eslint/no-misused-new': 'error',
 		// Avoid using promises in places not designed to handle them
 		'@typescript-eslint/no-misused-promises': 'error',
+		// Require explicit return and argument types on exported functions' and classes' public class methods
+		// Good for new code, except I prefer not to put :void, but well… Hell on some old code…
+		'@typescript-eslint/explicit-module-boundary-types': 'off',
 
 		// Other settings
 
 		// Requires using either T[] or Array<T> for arrays
 		'@typescript-eslint/array-type': [ 'warn', { default: 'array-simple' } ],
 		// Enforce or disallow the use of the record type (default to 'record')
-		'@typescript-eslint/consistent-indexed-object-style': 'error',
+		'@typescript-eslint/consistent-indexed-object-style': 'warn',
 		// Enforces consistent usage of type assertions
-		'@typescript-eslint/consistent-type-assertions': [ 'error',
+		'@typescript-eslint/consistent-type-assertions': [ 'warn',
 			{
 				assertionStyle: 'as',
-				objectLiteralTypeAssertions: 'never',
+				// 'never' is a bit too restrictive, eg. when declaring consts in object literals, etc.
+				objectLiteralTypeAssertions: 'allow',
 			},
 		],
 		// Consistent with type definition either interface or type
@@ -70,12 +74,15 @@ module.exports =
 		'@typescript-eslint/no-unnecessary-condition': 'warn',
 		// Disallows unnecessary constraints on generic types
 		'@typescript-eslint/no-unnecessary-type-constraint': 'warn',
+		// The use of forms such as var foo = require("foo") are banned. Instead use ES6 style imports or import foo = require("foo") imports.
+		'@typescript-eslint/no-var-requires': 'error',
 		// Prefer a ‘for-of’ loop over a standard ‘for’ loop if the index is only used to access the array being iterated
 		'@typescript-eslint/prefer-for-of': 'warn',
 		// Enforce includes method over indexOf method
 		'@typescript-eslint/prefer-includes': 'warn',
 		// Enforce the usage of the nullish coalescing operator instead of logical chaining
-		'@typescript-eslint/prefer-nullish-coalescing': 'warn',
+		// Finally, no, I prefer to use it when really needed.
+		// '@typescript-eslint/prefer-nullish-coalescing': 'warn',
 		// Prefer using concise optional chain expressions instead of chained logical ands
 		'@typescript-eslint/prefer-optional-chain': 'warn',
 		// Requires that private members are marked as readonly if they're never modified outside of the constructor
@@ -91,49 +98,15 @@ module.exports =
 
 		// Enforces naming conventions for everything across a codebase
 		'camelcase': 'off',
-		'@typescript-eslint/naming-convention': [ 'error',
-			{
-				selector: 'default',
-				format: [ 'strictCamelCase' ],
-			},
-
-			{
-				selector: 'variable',
-				// UPPER_CASE only for module-level consts
-				format: [ 'strictCamelCase', 'UPPER_CASE' ],
-			},
-			{
-				selector: 'parameter',
-				format: [ 'strictCamelCase' ],
-				leadingUnderscore: 'allow',
-			},
-			{
-				selector: [ 'classProperty', 'classMethod' ],
-				format: [ 'strictCamelCase' ],
-				// For properties with getter / setter or similar.
-				// For methods, use sparringly…
-				leadingUnderscore: 'allow',
-			},
-
-			// {
-			// 	selector: 'memberLike',
-			// 	modifiers: [ 'private' ],
-			// 	format: [ 'camelCase' ],
-			// 	leadingUnderscore: 'require'
-			// },
-
-			{
-				selector: 'typeLike',
-				format: [ 'PascalCase' ],
-			},
-		],
+		// https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/naming-convention.md
+		'@typescript-eslint/naming-convention': [ 'warn', ...namingConventions ],
 		// Enforce default parameters to be last
 		'default-param-last': 'off',
 		'@typescript-eslint/default-param-last': 'error',
-		// enforce dot notation whenever possible
+		// Enforce dot notation whenever possible
 		'dot-notation': 'off',
 		'@typescript-eslint/dot-notation': 'warn',
-		// require or disallow initialization in variable declarations
+		// Require or disallow initialization in variable declarations
 		'init-declarations': 'off',
 		'@typescript-eslint/init-declarations': 'off',
 		// Require or disallow an empty line between class members
@@ -150,7 +123,7 @@ module.exports =
 		'@typescript-eslint/no-duplicate-imports': 'error',
 		// Disallow empty functions
 		'no-empty-function': 'off',
-		'@typescript-eslint/no-empty-function': [ 'error', { allow: [ 'arrowFunctions', 'constructors' ] } ],
+		'@typescript-eslint/no-empty-function': [ 'warn', { allow: [ 'arrowFunctions', 'constructors' ] } ],
 		// Disallow the use of eval()-like methods (part of recommended)
 		// 'no-implied-eval': 'off',
 		// '@typescript-eslint/no-implied-eval': [],
@@ -165,24 +138,8 @@ module.exports =
 		'@typescript-eslint/no-loss-of-precision': 'off',
 		// Disallow magic numbers
 		'no-magic-numbers': 'off',
-		'@typescript-eslint/no-magic-numbers': [ 'warn',
-			{
-				ignore:
-				[
-					-1,
-					0,
-					1,
-					2,
-					3,
-					10,
-					// Common timing values…
-					100,
-					500,
-					1000,
-				],
-			},
-		],
-		// Disallow variable redeclaration
+		'@typescript-eslint/no-magic-numbers': [ 'warn', { ignore: allowedMagicNumbers } ],
+		// Disallow variable or member redeclaration
 		'no-redeclare': 'off',
 		'@typescript-eslint/no-redeclare': 'error',
 		// Disallow variable declarations from shadowing variables declared in the outer scope

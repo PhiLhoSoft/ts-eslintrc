@@ -1,8 +1,7 @@
 /* eslint-disable quote-props -- Because I prefer here consistency over pure rule. */
-/* eslint-disable @typescript-eslint/no-magic-numbers -- They are needed for some rules. */
+/* eslint-disable no-magic-numbers, @typescript-eslint/no-magic-numbers -- They are needed for some rules. */
 
 // Style rules that can be applied by a formatter. EcmaScript
-// Note: recommended rules are generally not there
 module.exports =
 {
 	rules:
@@ -20,6 +19,7 @@ module.exports =
 
 		// # Stylistic Issues
 
+		// Disallow or enforce spaces inside of brackets
 		// Common choice…
 		// 'array-bracket-spacing': [ 'warn', 'never' ],
 		// My choice…
@@ -32,6 +32,14 @@ module.exports =
 		'computed-property-spacing': [ 'warn', 'never' ],
 		// require or disallow newline at the end of files
 		'eol-last': 'warn',
+		// enforce consistent indentation
+		'indent': [ 'warn',
+			'tab',
+			{
+				SwitchCase: 1,
+				MemberExpression: 1,
+			},
+		],
 		// enforce consistent spacing between keys and values in object literal properties
 		'key-spacing': [ 'warn', { beforeColon: false, afterColon: true } ],
 		// enforce consistent linebreak style
@@ -91,7 +99,7 @@ module.exports =
 		// require braces around arrow function bodies
 		'arrow-body-style': [ 'warn', 'as-needed' ],
 		// require parentheses around arrow function arguments
-		'arrow-parens': 'warn',
+		'arrow-parens': [ 'warn', 'always' ],
 		// enforce consistent spacing before and after the arrow in arrow functions
 		'arrow-spacing': 'warn',
 		// enforce consistent spacing around `*` operators in generator functions
