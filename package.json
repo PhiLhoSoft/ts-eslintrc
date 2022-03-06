@@ -1,7 +1,7 @@
 {
 	"name": "@philhosoft/ts-eslintrc",
 	"displayName": "ts-eslintrc",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "Configuration files for ESLint, and optionally TypeScript plugin",
 	"author": "PhiLho",
 	"publisher": "PhiLhoSoft",
